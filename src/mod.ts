@@ -639,17 +639,22 @@ class NoteExerciseLooper extends HTMLElement {
   #saveState() {
     console.log("save state");
     const state = {
-      tempo: this.#tempo,
-      noteDuration: this.#noteDuration,
-      rootNoteOctave: this.#rootNoteOctave,
-      playingPattern: this.#playingPattern,
-      numOctaves: this.#numOctaves,
-      extraNotes: this.#extraNotes,
-      extraRests: this.#extraRests,
+      introBeats: this.#introBeats,
+
       rootPitchInteger: this.#rootPitchInteger,
       rootNoteName: this.#rootNoteName,
       currentSequence: this.#currentSequence,
-      introBeats: this.#introBeats,
+      currentSequenceThemeKey: this.#currentSequenceThemeKey,
+
+      tempo: this.#tempo,
+      rootNoteOctave: this.#rootNoteOctave,
+      noteDuration: this.#noteDuration,
+
+      playingPattern: this.#playingPattern,
+
+      numOctaves: this.#numOctaves,
+      extraNotes: this.#extraNotes,
+      extraRests: this.#extraRests,
     };
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
   }
@@ -676,6 +681,8 @@ class NoteExerciseLooper extends HTMLElement {
       DEFAULT_ROOT_PITCH_INTEGER;
     this.#rootNoteName = state.rootNoteName ?? DEFAULT_ROOT_NOTE_NAME;
     this.#currentSequence = state.currentSequence ?? DEFAULT_NOTE_SEQUENCE;
+    this.#currentSequenceThemeKey = state.currentSequenceThemeKey ??
+      DEFAULT_NOTE_SEQUENCE_THEME_KEY;
 
     this.#tempo = state.tempo ?? DEFAULT_TEMPO;
     this.#setPlayingPatternDurations();
@@ -730,6 +737,9 @@ class NoteExerciseLooper extends HTMLElement {
 
     // push the "0th" octave notes first
     // this happens in all cases, even if numOctaves is 0
+    // the math is a little tricky here, because octave "0" is the "first" octave
+    // and must be added first, in all cases
+    // I thought this solution was the most clear
     this.#currentSequence.forEach((interval) => {
       this.#exerciseNotes.push(
         rootNoteOctaveMidi + this.#rootPitchInteger + interval,
