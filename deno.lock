@@ -1,0 +1,42 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@musodojo/enharmonic-note-selector@^5.1.0": "5.1.0",
+    "jsr:@musodojo/music-theory-data@^1.1.0": "1.1.0",
+    "jsr:@musodojo/music-theory-data@^6.0.1": "6.1.0",
+    "jsr:@musodojo/music-theory-data@^6.1.0": "6.1.0",
+    "jsr:@musodojo/note-sequence-selector@4": "4.0.0",
+    "jsr:@musodojo/web-note-player@5": "5.0.0"
+  },
+  "jsr": {
+    "@musodojo/enharmonic-note-selector@5.1.0": {
+      "integrity": "b43cf6fab09c4c2f3c8e41f3a2029218096bab7579e79233a74b243546f63b57",
+      "dependencies": [
+        "jsr:@musodojo/music-theory-data@^6.1.0"
+      ]
+    },
+    "@musodojo/music-theory-data@1.1.0": {
+      "integrity": "6174ec2e6c87a77a7980d2943d6b6399a9632a58aa7759ef084af740c584ff90"
+    },
+    "@musodojo/music-theory-data@6.1.0": {
+      "integrity": "3c7304e08370e984ca96601c8d8ef61901c472a3ba16c4042184c7eff7c88c75"
+    },
+    "@musodojo/note-sequence-selector@4.0.0": {
+      "integrity": "5b20f191c5502e264ab720975c360bb529883f0ef5647c2253847a98be4971ff",
+      "dependencies": [
+        "jsr:@musodojo/music-theory-data@^6.0.1"
+      ]
+    },
+    "@musodojo/web-note-player@5.0.0": {
+      "integrity": "d8980c158d87a905ada03bd17c4d24c015e7ee38fc30954551ff144cdab624ba"
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@musodojo/enharmonic-note-selector@^5.1.0",
+      "jsr:@musodojo/music-theory-data@^6.1.0",
+      "jsr:@musodojo/note-sequence-selector@4",
+      "jsr:@musodojo/web-note-player@5"
+    ]
+  }
+}

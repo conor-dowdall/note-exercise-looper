@@ -1,0 +1,45 @@
+name: Publish Live Demo
+
+on:
+  push:
+    branches: ["publish"]
+  pull_request:
+    branches: ["publish"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  publish-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: 2.x
+
+      - name: Prepare deployment directory
+        run: mkdir -p public
+
+      - name: Create js bundle in public/
+        run: deno task bundle-live-demo
+
+      - name: Populate deployment directory
+        run: |
+          cp live-demo/index.html public/index.html
+          cp -r assets public/assets
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

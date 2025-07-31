@@ -1,0 +1,20 @@
+{
+  "name": "@musodojo/note-exercise-looper",
+  "version": "4.0.0",
+  "license": "CC0 1.0 Universal",
+  "exports": "./src/mod.ts",
+  "imports": {
+    "@musodojo/enharmonic-note-selector": "jsr:@musodojo/enharmonic-note-selector@^5.1.0",
+    "@musodojo/note-sequence-selector": "jsr:@musodojo/note-sequence-selector@^4.0.0",
+    "@musodojo/web-note-player": "jsr:@musodojo/web-note-player@^5.0.0",
+    "@musodojo/music-theory-data/types": "jsr:@musodojo/music-theory-data@^6.1.0/types"
+  },
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "dom.asynciterable", "deno.ns"]
+  },
+  "tasks": {
+    "bundle": "deno bundle --minify --platform browser -o dist/bundle.js src/mod.ts",
+    "devbundle": "deno bundle --watch --sourcemap --minify --platform browser -o dist/bundle.js src/mod.ts",
+    "bundle-live-demo": "deno bundle --minify --platform browser -o public/bundle.js src/mod.ts"
+  }
+}
